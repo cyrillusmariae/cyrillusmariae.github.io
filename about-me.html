@@ -1,154 +1,80 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<!-- TemplateBeginEditable name="doctitle" -->
-<title>Chavez Poon</title>
-<!-- TemplateEndEditable -->
-<!-- TemplateBeginEditable name="head" -->
-<!-- TemplateEndEditable -->
+<title>Cyrillus Mariae C. Poon</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="https://cyrillusmariae.github.io/style.css" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126389915-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    
+    gtag('config', atob("VUEtMTI2Mzg5OTE1LTE="));
+    </script>
 <style type="text/css">
-<!--
-body {
-	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
-	background-color: #4E5869;
-	margin: 0;
-	padding: 0;
-	color: #000;
+.auto-style2 {
+	text-align: center;
+	color: #FFFFFF;
 }
-
-/* ~~ Element/tag selectors ~~ */
-ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
-	padding: 0;
-	margin: 0;
+.auto-style4 {
+	font-family: Garamond;
+	font-size: xx-large;
 }
-h1, h2, h3, h4, h5, h6, p {
-	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
-	padding-right: 15px;
-	padding-left: 15px; /* adding the padding to the sides of the elements within the divs, instead of the divs themselves, gets rid of any box model math. A nested div with side padding can also be used as an alternate method. */
+.auto-style5 {
+	font-size: x-large;
 }
-a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
-	border: none;
+.auto-style6 {
+	font-size: large;
 }
-
-/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
-a:link {
-	color:#414958;
-	text-decoration: underline; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+.auto-style7 {
+	font-family: DFKai-SB;
+}
+.auto-style8 {
+	font-size: large;
+	font-family: DFKai-SB;
 }
 a:visited {
-	color: #4E5869;
-	text-decoration: underline;
+	color: #0000FF;
 }
-a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
-	text-decoration: none;
+.auto-style9 {
+	font-size: medium;
 }
-
-/* ~~ this container surrounds all other divs giving them their percentage-based width ~~ */
-.container {
-	width: 80%;
-	max-width: 1260px;/* a max-width may be desirable to keep this layout from getting too wide on a large monitor. This keeps line length more readable. IE6 does not respect this declaration. */
-	min-width: 780px;/* a min-width may be desirable to keep this layout from getting too narrow. This keeps line length more readable in the side columns. IE6 does not respect this declaration. */
-	background-color: #FFF;
-	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout. It is not needed if you set the .container's width to 100%. */
-	overflow: hidden; /* this declaration makes the .container clear all floated columns within it. */
+.auto-style10 {
+	font-size: medium;
+	font-family: DFKai-SB;
 }
-
-/* ~~ These are the columns for the layout. ~~ 
-
-1) Padding is only placed on the top and/or bottom of the divs. The elements within these divs have padding on their sides. This saves you from any "box model math". Keep in mind, if you add any side padding or border to the div itself, it will be added to the width you define to create the *total* width. You may also choose to remove the padding on the element in the div and place a second div within it with no width and the padding necessary for your design.
-
-2) No margin has been given to the columns since they are all floated. If you must add margin, avoid placing it on the side you're floating toward (for example: a right margin on a div set to float right). Many times, padding can be used instead. For divs where this rule must be broken, you should add a "display:inline" declaration to the div's rule to tame a bug where some versions of Internet Explorer double the margin.
-
-3) Since classes can be used multiple times in a document (and an element can also have multiple classes applied), the columns have been assigned class names instead of IDs. For example, two sidebar divs could be stacked if necessary. These can very easily be changed to IDs if that's your preference, as long as you'll only be using them once per document.
-
-4) If you prefer your nav on the right instead of the left, simply float these columns the opposite direction (all right instead of all left) and they'll render in reverse order. There's no need to move the divs around in the HTML source.
-
-*/
-.sidebar1 {
-	float: left;
-	width: 20%;
-	background-color: #93A5C4;
-	padding-bottom: 10px;
-}
-.content {
-	padding: 10px 0;
-	width: 80%;
-	float: left;
-}
-
-/* ~~ This grouped selector gives the lists in the .content area space ~~ */
-.content ul, .content ol { 
-	padding: 0 15px 15px 40px; /* this padding mirrors the right padding in the headings and paragraph rule above. Padding was placed on the bottom for space between other elements on the lists and on the left to create the indention. These may be adjusted as you wish. */
-}
-
-/* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
-ul.nav {
-	list-style: none; /* this removes the list marker */
-	border-top: 1px solid #666; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
-	margin-bottom: 15px; /* this creates the space between the navigation on the content below */
-}
-ul.nav li {
-	border-bottom: 1px solid #666; /* this creates the button separation */
-}
-ul.nav a, ul.nav a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
-	padding: 5px 5px 5px 15px;
-	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
-	text-decoration: none;
-	background-color: #8090AB;
-	color: #000;
-}
-ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
-	background-color: #6F7D94;
-	color: #FFF;
-}
-
-/* ~~miscellaneous float/clear classes~~ */
-.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
-	float: right;
-	margin-left: 8px;
-}
-.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
-	float: left;
-	margin-right: 8px;
-}
-.clearfloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the overflow:hidden on the .container is removed */
-	clear:both;
-	height:0;
-	font-size: 1px;
-	line-height: 0px;
-}
--->
-</style><!--[if lte IE 7]>
-<style>
-.content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
-ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to correct extra whiltespace between the links */
 </style>
-<![endif]--></head>
-
+</head>
 <body>
+<div id="container" style="width: 904px; height: 752px">
+<div id="header" class="auto-style4" style="height: 110px"> Cyrillus Mariae C. 
+	Poon C.S.P <span class="auto-style5">Member of the Confraternity of St. 
+	Peter</span><br />
+	<span class="auto-style5"><br />
+	<span class="auto-style7">潘諾仁 (朗希) 弟兄 </span></span>
+	<span class="auto-style7">
+	<span class="auto-style6">聖伯多祿在俗兄弟會會士</span></span></div>
+<div id="menu" class="auto-style2" style="height: 1px">
+	</div>
+<div id="sidebar">
+<p class="auto-style8"><a href="https://cyrillusmariae.github.io/">首頁</a></p>
+	<p class="auto-style8"><a href="about-me.html">個人簡介</a></p>
+	<p class="auto-style8"><a href="contact-me.html">聯絡</a></p>
+</div>
+<div id="main" class="auto-style6">
+	<p>
+	<span class="auto-style10">本人潘朗希，字「諾仁」，聖名「瑪利亞濟利祿」，祖籍廣東東莞，於公曆天主降生二千零三年六月十四日，農曆癸未歲次五月十五日，生於香港九龍浸信會醫院。我的家族有部份成員信仰天主教，其中我的六姑婆為耶穌寳血女修會的楊美容修女，可見我的家族曾出產一位修道聖召，實在是天主的恩寵。</span><span class="auto-style7"></p>
+	<p class="auto-style9">六歲時在機緣巧合之下入讀位於佐敦的德信學校，那時我已經對耶穌基督已經有基本的認識，因為先前在基督新教的幼稚園就讀，在德信學校裏，在老師們悉心的教導下，開始對天主教有一定的認識，加上由二年班開始，每星期日上午參加在德信學校裏舉辦的主日學，使到我學會了基本的天主教信仰及要理知識，之後在天主的安排下，於二零一二年四月八日在德信學校的小堂領洗成為天主教徒，其後更加入了小堂的輔祭團。</p>
+	<p class="auto-style9">到了青少年時期，在一些的原因下開始對天主教的傳統西方拉丁禮儀 (包括：羅馬新禮及舊禮、米蘭安博禮、法國里昂禮、西班牙摩爾阿拉伯禮) 有加深的興趣，之後並作深入的鑽研，其後更有機會在大禮彌撒中擔任禮節司。
 
-<div class="container">
-  <div class="sidebar1">
-    <ul class="nav">
-      <li><a href="https://cyrillusmariae.github.io">Home</a></li>
-      <li><a href="about-me.html">About Me</a></li>
-      <li><a href="publications.html">Publications</a></li>
-      <li><a href="contact-me.html">Contact Me</a>    <!-- end .sidebar1 --></li>
-    </ul>
-  </div>
-  <div class="content">
-    <h2 align="center">Welcome to Chavez Poon's Personal Homepage</h2>
-    <hr />
-    <p>(Click <a href="biography-chinese.pdf" target="_blank">here</a> for my biography in Chinese)</p>
-    <p>My name is Chavez Poon, and my baptismal name is “Cyrillus Mariae”. I was born in Hong Kong on the 14th of June 2003. In my family, some members are Catholic such as my father, also my aunt is a nun of the Sisters of the Precious Blood, her name is Sister Bernadette M. Y. Yeung. But sadly, she passed away in 2020.</p>
-    <p>My childish imagination is divided between historical Church buildings, Traditional liturgies, and the Sacred arts. Under the influence of my primary school teachers. I was baptized as a Roman Catholic in April 2012 inside my primary school chapel by a Priest of the Prelature of Opus Dei.</p>
-    <p>I am an experienced Acolyte and Master of Ceremonies, and I have served in different parishes and communities in the past 10 years. Now I usually serve the Holy Mass and various liturgies as Master of Ceremonies by invitations and appointments. My situation has remained unchanged since then.
-</p>
-    <p>For some reason, I started exploring the Latin liturgical rites in the Catholic Church, and now I’m interested in the Tridentine Rite, Novus Ordo, Milanese Ambrosian Rite, Spanish Mozarabic Rite, and the French Lyonese Rite.</p>
-    <p>I’m now a year-one student at the Hong Kong Institute of Vocational Education (Chai Wan), and I’m now pursuing my Higher Diploma in Cybersecurity. Before starting my studies in IVE (Chai Wan), I obtained my Diploma of Vocational Education in Information Technologies at Vocational Training Council Youth College (Tseung Kwan O) in February 2023.</p>
-    <p>In my daily life as a Roman Catholic, of course, not every day is a perfect day. When I look back at my life, I realize God has already uniquely prepared the path for me and guides me every step of the way. I give thanks to God for so many wonderful people who support me, love me, comfort me, encourage me, and pray for me. And also I give thanks to God for all that I have and all that I am, especially for my more than 10 years as a Roman Catholic. I feel so blessed, happy, and contented.</p>
-  </div>
-  <!-- end .container --></div>
+近年來我致力於運用現今的科技去推廣天主教的傳統西方拉丁禮儀，並把多年來的輔禮經驗和心得，公諸於世，務求使更多教友認識天主教的傳統西方拉丁禮儀，以及對天主教的傳統禮儀作出貢獻，現時我主要為一些私人或團體的禮儀 (包括彌撒、洗禮、婚禮、葬禮) 中義務擔任禮節司。
+
+ 
+	</p>
+	<p class="auto-style9">我現時在香港專業教育學院就讀網絡安全高級文憑，先前在職業訓練局將軍澳青年學院取得資訊科技職專文憑。</p>
+	<p><span class="auto-style9">在我的日常生活中，當然會有好或者不好的一日，但我回望我的生活時，我發現天主已經準備了祂給我的道路，而祂亦會陪伴我、指導我如何走這條通往成聖的道路，我要感謝天主，賜給我很多在我日常生活中幫助過、支持過、以及為我祈禱的人，我亦都要再一次感謝天主，賜給我生命，特別在過去十多年作為祂最寵愛的兒子，我感到平安以及充滿喜樂。</span></span></p>
+	</div>
+</div>
 </body>
 </html>
