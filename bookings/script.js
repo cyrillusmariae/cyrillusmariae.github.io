@@ -24,7 +24,7 @@ document.getElementById('appointmentForm').addEventListener('submit', function(e
     };
 
     // Send appointment data to server via fetch API (POST request)
-    fetch('sendEmail.php', {
+    fetch('/bookings/sendEmail.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
