@@ -23,6 +23,50 @@ h1{margin:0;color:#869843;font-size:24px;font-weight:400}
 .auto-style18 {
 	text-decoration: none;
 }
+.auto-style19 {
+	font-family: Garamond;
+	font-size: large;
+	text-decoration: none;
+}
+.container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 150px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
 </style>
 </head>
 
@@ -32,6 +76,62 @@ h1{margin:0;color:#869843;font-size:24px;font-weight:400}
 <hr />
 <p class="auto-style17">E-Mail: <a class="auto-style18" href="mailto:chavezpoon@icloud.com">
 chavezpoon@icloud.com</a> </p>
+<p class="auto-style17">Telephone: (+852) 9452 1580</p>
+<p class="auto-style17">Social Media:</p>
+<ul>
+	<li>
+	<p class="auto-style17">
+	<a class="auto-style18" href="https://www.facebook.com/poonlhchavez/" target="_blank">
+	Facebook</a></p>
+	</li>
+	<li>
+	<p class="auto-style17">
+	<a href="https://www.instagram.com/_chavhei03_/" target="_blank" class="auto-style18">Instagram</a></p>
+	</li>
+	<li>
+	<p class="auto-style17">
+	<a class="auto-style19" href="https://www.linkedin.com/in/poonlonghei/" target="_blank">
+	LinkedIn</a></p>
+	</li>
+</ul>
+<p class="auto-style17">Friendly Reminder:</p>
+<ul>
+	<li>
+	<p class="auto-style17">There is a voice mail service with my telephone 
+	number. If you diverted to it and leave a message with your contact details 
+	behind, I will be very happy to get back to you when available.</p>
+	</li>
+	<li>
+	<p class="auto-style17">E-Mail is a good method for any kinds of general 
+	correspondences. You will recieve an acknowledgement after your message has 
+	been noted, but please allow a turn-around time of 2-3 calendar days, and 
+	this will likely take longer in holiday periods.</p>
+	</li>
+</ul>
+
+<div class="container">
+    <form action="/submit-your-form-handler" method="post">
+        <div class="form-group">
+            <span class="auto-style16">
+            <label for="name">Your Name:</label></span>
+            <input type="text" id="name" name="name" required class="auto-style16"><span class="auto-style16">
+			</span>
+        </div>
+        <div class="form-group">
+            <span class="auto-style16">
+            <label for="email">Your Email:</label></span>
+            <input type="text" id="email" name="email" required class="auto-style16"><span class="auto-style16">
+			</span>
+        </div>
+        <div class="form-group">
+            <span class="auto-style16">
+            <label for="message">Message:</label></span>
+            <textarea id="message" name="message" required class="auto-style16"></textarea><span class="auto-style16">
+			</span>
+        </div>
+        <input type="submit" value="Submit" class="auto-style16" style="width: 127px; height: 39px">
+    </form>
+</div>
 	
 </body>
 
