@@ -23,43 +23,28 @@ document.getElementById('appointmentForm').addEventListener('submit', function(e
         service: service
     };
 
-    // Save appointment (simulated for demo with localStorage)
-    var appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-    appointments.push(appointment);
-    localStorage.setItem('appointments', JSON.stringify(appointments));
+    // Send appointment data to server via fetch API (POST request)
+    fetch('sendEmail.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(appointment)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        alert('Appointment booked successfully. Check your email for confirmation.');
 
-    // Clear form fields
-    document.getElementById('name').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('phone').value = '';
-    document.getElementById('datetime').value = '';
-    document.getElementById('service').value = '';
-
-    // Update upcoming appointments list
-    updateAppointmentsList();
+        // Clear form fields
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('datetime').value = '';
+        document.getElementById('service').value = '';
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again later.');
+    });
 });
-
-function updateAppointmentsList() {
-    var appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-    var appointmentsList = document.getElementById('appointmentsList');
-    appointmentsList.innerHTML = '';
-
-    if (appointments.length === 0) {
-        appointmentsList.innerHTML = '<p>No upcoming appointments.</p>';
-    } else {
-        appointments.forEach(function(appointment, index) {
-            var appointmentDateTime = new Date(appointment.datetime).toLocaleString();
-            var html = '<li class="appointment">';
-            html += '<p><strong>Name:</strong> ' + appointment.name + '</p>';
-            html += '<p><strong>Email:</strong> ' + appointment.email + '</p>';
-            html += '<p><strong>Phone:</strong> ' + appointment.phone + '</p>';
-            html += '<p><strong>Date and Time:</strong> ' + appointmentDateTime + '</p>';
-            html += '<p><strong>Service:</strong> ' + appointment.service + '</p>';
-            html += '</li>';
-            appointmentsList.innerHTML += html;
-        });
-    }
-}
-
-// Initial update of appointments list on page load
-updateAppointmentsList();
