@@ -28,10 +28,39 @@ h1{margin:0;color:#869843;font-size:24px;font-weight:400}
 	font-size: large;
 	text-decoration: none;
 }
+.auto-style20 {
+	font-family: Garamond;
+	font-size: large;
+	text-align: center;
+}
 </style>
+<script type="text/javascript">
+<!--
+function FP_swapImg() {//v1.0
+ var doc=document,args=arguments,elm,n; doc.$imgSwaps=new Array(); for(n=2; n<args.length;
+ n+=2) { elm=FP_getObjectByID(args[n]); if(elm) { doc.$imgSwaps[doc.$imgSwaps.length]=elm;
+ elm.$src=elm.src; elm.src=args[n+1]; } }
+}
+
+function FP_preloadImgs() {//v1.0
+ var d=document,a=arguments; if(!d.FP_imgs) d.FP_imgs=new Array();
+ for(var i=0; i<a.length; i++) { d.FP_imgs[i]=new Image; d.FP_imgs[i].src=a[i]; }
+}
+
+function FP_getObjectByID(id,o) {//v1.0
+ var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
+ else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
+ if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
+ for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
+ f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
+ for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
+ return null;
+}
+// -->
+</script>
 </head>
 
-<body>
+<body onload="FP_preloadImgs(/*url*/'buttonB.gif',/*url*/'buttonC.gif')">
 
 <h1 class="auto-style16">Contact Me</h1>
 <hr />
@@ -69,10 +98,18 @@ chavezpoon@icloud.com</a> </p>
 	this will likely take longer in holiday periods.</p>
 	</li>
 	<li>
-	<p class="auto-style17">Alternatively, you can connect with me through my social media channels that I have linked on this page. You may leave a message via one of the social media channels, but please accept my apologies that I will only be accepting friend requests on Facebook from my friends 
+	<p class="auto-style17">You can connect with me through my social media channels that I have linked on this page. You may leave a message via one of the social media channels, but please accept my apologies that I will only be accepting friend requests on Facebook from my friends 
 	that I have met them before. If we have not met each other, I would very much appreciate if you could drop me a message.</p>
 	</li>
+	<li>
+	<p class="auto-style17">Alternatively, you can use the contact form below, 
+	just click the "contact form" button then you will reach the contact form 
+	page.</p>
+	</li>
 </ul>
+	
+<p class="auto-style20"><a href="/contact-form/" target="_blank">
+<img id="img1" alt="Contact Form" height="24" onmousedown="FP_swapImg(1,0,/*id*/'img1',/*url*/'buttonC.gif')" onmouseout="FP_swapImg(0,0,/*id*/'img1',/*url*/'buttonA.gif')" onmouseover="FP_swapImg(1,0,/*id*/'img1',/*url*/'buttonB.gif')" onmouseup="FP_swapImg(0,0,/*id*/'img1',/*url*/'buttonB.gif')" src="buttonA.gif" style="border: 0" width="122" /><!-- MSComment="ibutton" fp-style="fp-btn: Embossed Rectangle 1; fp-font-size: 11; fp-transparent: 1" fp-title="Contact Form" --></a></p>
 	
 </body>
 
