@@ -1,0 +1,224 @@
+@charset "iso-8859-1";
+/* This rule resets a core set of elements so that they will appear consistent across browsers. Without this rule, content styled with an h1 tag, for example, would appear in different places in Firefox and Internet Explorer because each browser has a different top margin default value. By resetting these values to 0, the elements will initially be rendered in an identical fashion and their properties can be easily defined by the designer in any subsequent rule. */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+}
+/* The body is the outermost layout component and contains the visible page content. Setting properties for the body element will help to create consistent styling of the page content and more manageable CSS. Besides using the body element to set global properties, it is common to use the body element to set the background color of the page and create a centered container for the page content to display. */
+body {
+	text-align: center; /* Centers the page content container in IE 5 browsers. */;
+	padding: 0px;
+	background-color: #272F00;
+	font-size: .95em;
+	color: #000;
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	margin: 0px;
+	padding: 0px;
+}
+/*===============indicates no border around any image ============*/
+body img {
+	border: 0px;
+	text-decoration: none;
+}
+h1, h2, h3 {
+	padding: 2px 0px 2px 3px;
+	background-color: inherit;
+	color: #1E3A1B;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	background-image: url('../images/header-bg.jpg');
+	background-repeat: no-repeat;
+}
+h1 {
+	font-size: 150%;
+}
+h2 {
+	font-size: 130%;
+}
+h3 {
+	font-size: 100%;
+}
+/* Sets the style for unvisited links. */
+a, a:link {
+	font-weight: bold;
+	color: #5C7B37;
+	background: transparent;
+	text-decoration: underline;
+}
+/* Sets the style for visited links. */
+a:visited {
+	color: #000;
+	text-decoration: none;
+	font-weight: bold;
+}
+/* Sets the style for links on mouseover. */
+a:hover {
+	font-weight: bold;
+	text-decoration : underline;
+	background: #9EBA9B;
+	color: #000000;
+}
+/* This is a container for the page content. It is common to use the container to constrain the width of the page content and allow for browser chrome to avoid the need for horizontal scrolling. For fixed layouts you may specify a container width and use auto for the left and right margin to center the container on the page. IE 5 browser require the use of text-align: center defined by the body element to center the container. For liquid layouts you may simply set the left and right margins to center the container on the page. */
+#outerWrapper {
+	margin: 10px auto 10px auto;
+	width: 740px;
+	border: 1px solid #272F00;
+	padding: 5px;
+	background-color: #ffffff;
+	text-align: left; /* Redefines the text alignment defined by the body element. */
+}
+#outerWrapper #header {
+	background-color: #ffffff;
+	height: 225px;
+	padding: 0px 15px 0px 0px;
+	background-repeat: no-repeat;
+	background-position: left center;
+	font-weight: bold;
+	background-image: url('../images/woods-stream.jpg');
+	text-align: right;
+	font-size: .85em;
+}
+#outerWrapper #header p {
+	padding: 20px 0px 0px 0px;
+	margin: 0px;
+}
+#outerWrapper #topnavigation {
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	background-color: #272F00;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	color: #FFFFFF;
+}
+#outerWrapper #topnavigation ul {
+	list-style-type: none;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+#outerWrapper #topnavigation li {
+	float: left;
+}
+#outerWrapper #topnavigation a {
+	font-weight: bold;
+	text-decoration: none;
+	color: #FFFFFF;
+	display: block;
+	padding: 5px;
+	border: 1px solid #F8FAEF;
+}
+#outerWrapper #topnavigation a:hover {
+	font-weight: bold;
+	text-decoration: none;
+	color: #000000;
+	border: 1px solid #b9d;
+	background-color: #D2D8BC;
+}
+#outerWrapper #contentWrapper #rightColumn1 {
+	background-color: #D2D8BC;
+	float: right;
+	border-left: solid 1px #666;
+	width: 200px;
+	padding: 10px 10px 10px 10px;
+	font-size: .85em;
+	color: #000;
+	border-right: solid 1px #333E13;
+	border-left: solid 1px #333E13;
+	border-bottom: solid 1px #333E13;
+}
+#outerWrapper #contentWrapper #rightColumn1 .sidebox a:link {
+	background: #FFFFFF;
+	color: #1534B3;
+	font-weight: bold;
+	text-decoration: none;
+}
+#outerWrapper #contentWrapper #rightColumn1 .sidebox a:visited {
+	background: #FFFFFF;
+	color: #1534B3;
+	font-weight: bold;
+	text-decoration: none;
+}
+#outerWrapper #contentWrapper #rightColumn1 .sidebox a:hover {
+	background: #FFFFFF;
+	color: #C60029;
+	font-weight: bold;
+	text-decoration: underline;
+}
+#outerWrapper #contentWrapper #rightColumn1 .sidebox a:active {
+	background: #FFFFFF;
+	color: #1534B3;
+	font-weight: bold;
+	text-decoration: none;
+}
+/* right-hand - colored box  */
+.sidebox {
+	border: #2C5629 2px solid;
+	margin: 0px 5px 3px 5px;
+	padding: 0px 3px 15px 3px;
+	background: #ffffff;
+	color: #000000;
+	
+}
+/* right-hand - colored box  heading */
+.sideboxheading {
+	background-position: #333E13;
+	background: #333E13;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 3px;
+	padding: 2px;
+}
+/* Contains the main page content. When using a mutliple column layout the margins will be set to account for the floated columns' width, margins, and padding. */
+#outerWrapper #contentWrapper #content {
+	padding: 10px 10px 10px 10px;
+	margin: 0 220px 0 0;
+}
+#outerWrapper #contentWrapper #content ul li {
+	list-style-image: url('../images/green-sq.gif');
+	margin: 2px;
+	padding: 2px;
+}
+
+/* Using floated elements and a clear float class is a common method to accomplish multiple column tableless layouts. If floated elements are used without being cleared the elements following will wrap around the floated element. This class should be applied to an element after the last floated element and before the close of the container with floated elements. */
+#outerWrapper #contentWrapper .clearFloat {
+	display: block;
+	clear: right;
+}
+#outerWrapper #footer {
+	padding: 5px;
+	border-top: 2px solid #000000;
+	background-color: #ffffff;
+	text-align: center;
+	font-size: small;
+}
+#outerWrapper #footer p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+/*=============images =============*/
+.imglft {
+	float: left;
+	padding: 5px;
+}
+.imgrgt {
+	float: right;
+	padding: 5px;
+}
+/*================= 
+horizontal lines 
+================*/
+hr {
+	background-color: #1E3A1B;
+	border: 0px;
+	color: #1E3A1B;
+	height: 2px;
+}
+.ctr {
+	text-align: center;
+}
+
