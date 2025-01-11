@@ -40,6 +40,3 @@ defaults:
       type: post
     values:
       tags: Other
-
-header_pages:
-  - about-me.html
