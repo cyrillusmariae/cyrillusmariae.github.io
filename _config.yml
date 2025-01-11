@@ -42,5 +42,5 @@ defaults:
       tags: Other
 
 header_pages:
-  - about-me.html
-  - archive.html
+  - about-me.md
+  - archive.md
