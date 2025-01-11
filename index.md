@@ -1,5 +1,5 @@
-Here you can say lots of fun things about your site.
+This is my personal blog (or “online journal”) where I share my personal views and daily life as a traditional Roman Catholic Liturgical Master of Ceremonies. I write about anything that I see and feel.
 
-Maybe say a some things about yourself.
+If you want to learn more about me, feel free to visit my personal homepage at https://chavezpoon.com.
 
-Or maybe what you plan to blog about.
+For any comments and feedback. please don’t hesitate to e-mail me at chavezpoon@icloud.com.
