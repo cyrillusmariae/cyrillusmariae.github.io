@@ -3,7 +3,7 @@ layout: default
 ---
 
 <article>
-  {% include meta.html post=page %} <p>By {{ page.author }}</p>
+  {% include meta.html post=page %} <p><i>Posted by {{ page.author }}</i></p>
   {{ content }}
   {% if site.comments.isso_domain or site.comments.disqus_shortname %}
     <hr>
