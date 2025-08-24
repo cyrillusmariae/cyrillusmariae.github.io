@@ -5,8 +5,8 @@ permalink: /:title/
 lang: "en"
 excerpt_separator: "\n\n\n"
 date_format: "%B %d, %Y"
-show_frame: true
 show_excerpts: false
+show_frame: true
 
 # Layout
 
@@ -32,6 +32,6 @@ external:                       # accepts {file, title, url, icon, sidebaricon}
 remote_theme: niklasbuschmann/contrast
 
 plugins:
- - jekyll-feed
  - jekyll-remote-theme
+ - jekyll-feed
  - jektex
