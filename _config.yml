@@ -25,7 +25,6 @@ navigation:                     # accepts {file, title, url, icon, sidebaricon}
   - {file: "archive.html", sidebaricon: home}
 
 external:                       # accepts {file, title, url, icon, sidebaricon}
-  - {title: Color, icon: moon, url: "javascript:toggle()"}
   - {title: Mail, icon: envelope, url: "mailto:chavezpoon@icloud.com"}
   - {title: Subscribe, icon: rss, url: "/feed.xml"}
 
