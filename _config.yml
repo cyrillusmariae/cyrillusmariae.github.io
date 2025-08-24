@@ -27,7 +27,7 @@ external:                       # accepts {file, title, url, icon, sidebaricon}
   - {title: Subscribe, icon: rss, url: "/feed.xml"}
 
 comments:
-#  disqus_shortname: ""         # see https://disqus.com
+#  disqus_shortname: "chavezpoon"         # see https://disqus.com
 #  isso_domain: ""              # see https://isso-comments.de
 
 plugins:
