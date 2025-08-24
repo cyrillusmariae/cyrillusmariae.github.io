@@ -3,6 +3,7 @@ layout: default
 title:  "文章分類"
 ---
 
+<header><h1>{{ include.title | default: page.title }}</h1></header>
 <div class="tag-list">
 {% for cat in site.categories %}
   <div class="tag-group">
