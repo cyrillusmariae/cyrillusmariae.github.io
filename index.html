@@ -8,7 +8,7 @@ title: "主頁"
     <article>
       {% include meta.html post=post %}
       {{ post.excerpt }}
-      <footer class="button"><a href="{{ post.url | relative_url }}">read more</a></footer>
+      <footer class="button"><a href="{{ post.url | relative_url }}">閱讀更多</a></footer>
     </article>
   {% endfor %}
 {% else %}
