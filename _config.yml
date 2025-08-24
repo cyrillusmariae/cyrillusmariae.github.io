@@ -5,6 +5,7 @@ permalink: /:title/
 lang: "en"
 excerpt_separator: "\n\n\n"
 date_format: "%B %d, %Y"
+show_frame: true
 
 # Layout
 
@@ -27,9 +28,9 @@ external:                       # accepts {file, title, url, icon, sidebaricon}
   - {title: Mail, icon: envelope, url: "mailto:chavezpoon@icloud.com"}
   - {title: Subscribe, icon: rss, url: "/feed.xml"}
 
-comments:
-#  disqus_shortname: "chavezpoon"         # see https://disqus.com
-#  isso_domain: ""              # see https://isso-comments.de
+remote_theme: niklasbuschmann/contrast
 
 plugins:
  - jekyll-feed
+ - jekyll-remote-theme
+ - jektex
