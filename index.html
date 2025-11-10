@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="author" content="Chavez L. H. Poon">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="openiconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet"> 
-    <link rel="icon" href="" type="image/x-icon">
-
     <title>Chavez L. H. Poon</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <style>
     	body{
     		background-color: #393939;
@@ -58,11 +55,47 @@
             text-align: center;
         }
 	</style>
-  </head>
-  <body>
-    <br>
+</head>
+  <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Chavez L. H. Poon</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Navigation</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="https://cyrillusmariae.github.io/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="service.html">Service</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="portfolio.html">Portfolio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+            </ul>
+            <form class="d-flex mt-3" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+
     <div class="container">
-    	<div class="row headpad">
+        <br><br>
+        <div class="row headpad">
     		<div class="col-12 col-md-5 col-lg-4 col-xl-3"><img src="https://cyrillusmariae.github.io/images/long-hei.JPG" class="img-fluid rounded" /></div>
     		<div class="col-12 col-md-7 col-lg-8 col-xl-9">
     			<br />
@@ -89,49 +122,15 @@
                 <li class="intro">More than 5 years of experiences in website editing and authoring</li>
                 <li class="intro">Experienced in using various Content Management Systems (CMS) such as WordPress, Wix Studio, and Shopify</li>
                 <li class="intro">Strong understanding of responsive design principles and mobile-first development</li>
+                <li class="intro">Optimization on cross platform user experience</li>
             </p>
             <a target="_blank" class="btn btn-sm btn-secondary" href="https://cyrillusmariae.com/">Check out my Personal Website</a>
 	    </div>
         <hr>
-        <div class="container-fluid headpad">
-	    	<h2 class="intro">Service</h2>
-            &nbsp;
-	    	<p class="intro">
-                <li class="intro">Static Website Design and Development</li>
-                <li class="intro">Content Management System Integration</li>
-                <li class="intro">Responsive Design Implementation</li>
-                <li class="intro">Technical Maintenances and Support</li>
-                &nbsp;
-                <p class="intro">... and any other things you think that I can serve!</p>
-            </p>
-	    </div>
-        <hr>
-    	<div class="container-fluid headpad">
-	    	<h2 class="intro">Portfolio</h2>
-            &nbsp;
-	    	<p class="intro">Updating...</p>
-	    </div>
-        <hr>
-        <div class="container-fluid">
-            <h2 class="intro">Contact</h2>
-            &nbsp;
-            <p class="intro">
-                E-Mail: &nbsp;<a class="btn btn-sm btn-light" href="mailto:chavezpoon@icloud.com" target="_blank">chavezpoon@icloud.com</a>
-                <br><br>
-                WhatsApp: &nbsp;<a class="btn btn-sm btn-light" href="https://wa.me/85291612990" target="_blank">(+852) 9161 2990</a>
-                <br><br>
-                <a target="_blank" class="btn btn-sm btn-primary" href="https://www.facebook.com/profile.php?id=61583379302861">Facebook</a>&nbsp;&nbsp;&nbsp;<a target="_blank" class="btn btn-sm btn-danger" href="https://www.instagram.com/c.m.production/">Instagram</a>
-            </p>
-        </div>
         <br />
         <center><small class="intro">Copyright © 2025 Chavez L. H. Poon. All rights reserved.</small></center>
         <br />
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
