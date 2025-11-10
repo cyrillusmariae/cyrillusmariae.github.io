@@ -1,122 +1,131 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Chavez L. H. Poon</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="openiconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet"> 
+    <title>Chavez L. H. Poon</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+    	body{
+    		background-color: #393939;
+    	}
+    	a{
+    		color: #dfdfdf;
+    	}
+    	.intro-head{
+    		font-size: 56px;
+    	}
+    	.intro{
+    		font-family: 'Nunito Sans', sans-serif;
+    		color: #ececec;
+    	}
+    	.headpad{
+    		padding-top: 12px;
+    	}
+        .showcase{
+            padding-bottom: 10px;
+        }
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: #161616;
+        }
+        .card:hover .card-overlay{
+            opacity: 0.875;
+        }
+        .card-overlay-text{
+            color: #dfdfdf;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+        }
+	</style>
+</head>
+  <body class="p-3 m-0 border-0 bd-example m-0 border-0">
 
-		<!-- Header -->
-			<div id="header">
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Chavez L. H. Poon</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Navigation</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="https://cyrillusmariae.github.io/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="service.html">Service</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="portfolio.html">Portfolio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+            </ul>
+            <form class="d-flex mt-3" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-				<div class="top">
+    <div class="container">
+        <br><br>
+        <div class="row headpad">
+    		<div class="col-12 col-md-5 col-lg-4 col-xl-3"><img src="https://cyrillusmariae.github.io/images/long-hei.JPG" class="img-fluid rounded" /></div>
+    		<div class="col-12 col-md-7 col-lg-8 col-xl-9">
+    			<br />
+    			<h2 class="intro intro-head">Chavez L. H. Poon</h2>
+    			<h4 class="intro">Freelance Website Designer and Developer</h4>
+                &nbsp;
+    			<p class="intro">
+                    Languages: <span class="badge badge-pill badge-dark">HTML</span>
+                    &nbsp;<span class="badge badge-pill badge-dark">CSS</span>
+                    &nbsp;<span class="badge badge-pill badge-dark">Bootstrap</span>
+                    <br><br>
+                    Content Management: <span class="badge badge-pill badge-dark">WordPress</span>
+                    &nbsp;<span class="badge badge-pill badge-dark">Wix Studio</span>
+                    &nbsp;<span class="badge badge-pill badge-dark">Shopify</span>
+                </p>
+    		</div>
+    	</div>
+        <hr>
+    	<div class="container-fluid headpad">
+	    	<h2 class="intro">Portfolio</h2>
+            &nbsp;
+	    	<p class="intro">
+                <p class="intro">Updating...</p>
+            </p>
+	    </div>
+        <hr>
+        <br />
+        <center><small class="intro">Copyright © 2025 Chavez L. H. Poon. All rights reserved.</small></center>
+        <br />
+    </div>
 
-					<!-- Logo -->
-						<div id="logo">
-							<div align="center">
-								<h1 id="title">Chavez L. H. Poon</h1>
-							</div>
-						</div>
-
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="https://cyrillusmariae.github.io/" id="top-link"><span class="icon solid fa-home">Home</span></a></li>
-								<li><a href="about.html" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
-								<li><a href="service.html" id="about-link"><span class="icon solid fa-truck">Service</span></a></li>
-								<li><a href="portfolio.html" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
-								<li><a href="contact.html" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
-							</ul>
-						</nav>
-
-				</div>
-
-			</div>
-
-		<!-- Main -->
-			<div id="main">
-
-				<!-- Portfolio -->
-					<section id="portfolio" class="two">
-						<div class="container">
-
-							<header>
-								<h2>Portfolio</h2>
-							</header>
-
-							<p>Projects for undisclosed clients are excluded</p>
-							<p><i>Under construction...</i></p>
-
-							<div class="row">
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-										<header>
-											<h3>Ipsum Feugiat</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-										<header>
-											<h3>Rhoncus Semper</h3>
-										</header>
-									</article>
-								</div>
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
-										<header>
-											<h3>Magna Nullam</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
-										<header>
-											<h3>Natoque Vitae</h3>
-										</header>
-									</article>
-								</div>
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-										<header>
-											<h3>Dolor Penatibus</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-										<header>
-											<h3>Orci Convallis</h3>
-										</header>
-									</article>
-								</div>
-							</div>
-
-						</div>
-					</section>
-
-			</div>
-
-		<!-- Footer -->
-			<div id="footer">
-
-				<!-- Copyright -->
-					<ul class="copyright">
-						<li>Copyright © 2025 Chavez L. H. Poon. All rights reserved.</li>
-					</ul>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+  </body>
 </html>
