@@ -61,9 +61,206 @@
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
 body {
+  position: relative;
   color: var(--default-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='7' cy='7' r='5' fill='%23000000'/%3E%3C/svg%3E") 7 7, auto;
+}
+
+body::before,
+body::after {
+  position: fixed;
+  pointer-events: none;
+  content: "";
+}
+
+body::before {
+  inset: -12%;
+  z-index: 996;
+  opacity: 0.2;
+  background-image:
+    radial-gradient(circle, var(--accent-color) 1.5px, transparent 1.8px),
+    linear-gradient(90deg, transparent 49.7%, color-mix(in srgb, var(--accent-color), transparent 82%) 50%, transparent 50.3%),
+    linear-gradient(0deg, transparent 49.7%, color-mix(in srgb, var(--accent-color), transparent 82%) 50%, transparent 50.3%);
+  background-size: 56px 56px, 112px 112px, 112px 112px;
+  animation: site-network-drift 20s linear infinite;
+}
+
+body::after {
+  top: -30%;
+  left: -30%;
+  z-index: 996;
+  width: 160%;
+  height: 160%;
+  opacity: 0.13;
+  background: repeating-linear-gradient(115deg, transparent 0 150px, var(--accent-color) 151px 152px, transparent 153px 300px);
+  transform: rotate(-8deg);
+  animation: site-line-sweep 16s ease-in-out infinite alternate;
+}
+
+body * {
+  cursor: inherit;
+}
+
+body.dark-mode {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='7' cy='7' r='5' fill='%23ffffff'/%3E%3C/svg%3E") 7 7, auto;
+}
+
+.hero .portrait-wrap,
+.about .profile-figure {
+  position: relative;
+  z-index: 1000;
+  isolation: isolate;
+}
+
+.hero .portrait-wrap .portrait-img,
+.about .profile-figure .profile-photo {
+  position: relative;
+  z-index: 1;
+}
+
+.cursor-echo {
+  position: fixed;
+  z-index: 9999;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border: 1px solid var(--heading-color);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: cursor-echo 0.55s ease-out forwards;
+}
+
+.background-dots {
+  position: fixed;
+  z-index: 9998;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  pointer-events: none;
+}
+
+.background-dots span {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--heading-color);
+  animation: background-dot-expand 0.7s ease-out forwards;
+}
+
+.profile-firework {
+  position: fixed;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+.profile-firework::before {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: var(--heading-color);
+  content: "";
+  animation: profile-firework-flash 0.35s ease-out forwards;
+}
+
+.profile-firework span {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: var(--heading-color);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--heading-color), transparent 25%);
+  animation: profile-firework-expand 0.8s cubic-bezier(0.15, 0.75, 0.35, 1) forwards;
+}
+
+@keyframes background-dot-expand {
+  from {
+    opacity: 0.9;
+    transform: translate(0, 0) scale(0.7);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(var(--dot-x), var(--dot-y)) scale(0.2);
+  }
+}
+
+@keyframes cursor-echo {
+  from {
+    opacity: 0.85;
+    transform: scale(0.35);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+@keyframes profile-firework-flash {
+  from {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+
+@keyframes profile-firework-expand {
+  from {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.4);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(var(--firework-x), var(--firework-y)) scale(0.15);
+  }
+}
+
+@keyframes site-network-drift {
+  from {
+    background-position: 0 0, 0 0, 0 0;
+  }
+
+  to {
+    background-position: 56px 56px, 112px 0, 0 112px;
+  }
+}
+
+@keyframes site-line-sweep {
+  from {
+    transform: translate3d(-3%, -2%, 0) rotate(-8deg);
+  }
+
+  to {
+    transform: translate3d(3%, 2%, 0) rotate(-8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-echo,
+  .background-dots,
+  .profile-firework {
+    animation: none;
+    opacity: 0;
+  }
+
+  .background-dots span,
+  .profile-firework::before,
+  .profile-firework span,
+  body::before,
+  body::after {
+    animation: none;
+  }
 }
 
 a {
@@ -356,64 +553,35 @@ h6 {
   justify-content: center;
 }
 
-#preloader div {
-  width: 13px;
-  height: 13px;
+#preloader .loader-content {
+  width: min(420px, calc(100% - 48px));
+  text-align: center;
+}
+
+#preloader .loader-percent {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--heading-color);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+#preloader .loader-bar {
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background-color: color-mix(in srgb, var(--default-color), transparent 85%);
+}
+
+#preloader .loader-bar-fill {
+  width: 1%;
+  height: 100%;
+  border-radius: inherit;
   background-color: var(--accent-color);
-  border-radius: 50%;
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-  position: absolute;
-  left: 50%;
-}
-
-#preloader div:nth-child(1) {
-  left: calc(50% + 8px);
-  animation: animate-preloader-1 0.6s infinite;
-}
-
-#preloader div:nth-child(2) {
-  left: calc(50% + 8px);
-  animation: animate-preloader-2 0.6s infinite;
-}
-
-#preloader div:nth-child(3) {
-  left: calc(50% + 32px);
-  animation: animate-preloader-2 0.6s infinite;
-}
-
-#preloader div:nth-child(4) {
-  left: calc(50% + 56px);
-  animation: animate-preloader-3 0.6s infinite;
-}
-
-@keyframes animate-preloader-1 {
-  0% {
-    transform: scale(0);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes animate-preloader-3 {
-  0% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(0);
-  }
-}
-
-@keyframes animate-preloader-2 {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  100% {
-    transform: translate(24px, 0);
-  }
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent-color), transparent 25%);
+  transition: width 50ms linear;
 }
 
 /*--------------------------------------------------------------
@@ -423,7 +591,7 @@ h6 {
   position: fixed;
   visibility: hidden;
   opacity: 0;
-  right: 15px;
+  left: 15px;
   bottom: 15px;
   z-index: 99999;
   background-color: var(--accent-color);
@@ -578,6 +746,9 @@ section,
 # Hero Section
 --------------------------------------------------------------*/
 .hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding-top: 60px;
   min-height: 100vh;
   display: flex;
@@ -591,6 +762,74 @@ section,
   /* Spacing rhythm */
   /* Subtle parallax simulation for large screens */
   /* Responsive refinements */
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.hero::before {
+  inset: -12%;
+  z-index: -2;
+  opacity: 0.2;
+  background-image:
+    radial-gradient(circle, var(--accent-color) 1.5px, transparent 1.8px),
+    linear-gradient(90deg, transparent 49.7%, color-mix(in srgb, var(--accent-color), transparent 82%) 50%, transparent 50.3%),
+    linear-gradient(0deg, transparent 49.7%, color-mix(in srgb, var(--accent-color), transparent 82%) 50%, transparent 50.3%);
+  background-size: 56px 56px, 112px 112px, 112px 112px;
+  animation: hero-network-drift 20s linear infinite;
+}
+
+.hero::after {
+  top: -30%;
+  left: -30%;
+  z-index: -1;
+  width: 160%;
+  height: 160%;
+  opacity: 0.13;
+  background: repeating-linear-gradient(115deg, transparent 0 150px, var(--accent-color) 151px 152px, transparent 153px 300px);
+  transform: rotate(-8deg);
+  animation: hero-line-sweep 16s ease-in-out infinite alternate;
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes hero-network-drift {
+  from {
+    background-position: 0 0, 0 0, 0 0;
+  }
+
+  to {
+    background-position: 56px 56px, 112px 0, 0 112px;
+  }
+}
+
+@keyframes hero-line-sweep {
+  from {
+    transform: translate3d(-3%, -2%, 0) rotate(-8deg);
+  }
+
+  to {
+    transform: translate3d(3%, 2%, 0) rotate(-8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before,
+  .hero::after {
+    animation: none;
+  }
+}
+
+.hero::before,
+.hero::after {
+  display: none;
 }
 
 .hero .intro .eyebrow .dot {
@@ -3463,4 +3702,68 @@ section .hero {
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+/*--------------------------------------------------------------
+# Theme Toggle
+--------------------------------------------------------------*/
+.theme-toggle {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 998;
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--heading-color), transparent 65%);
+  border-radius: 50%;
+  color: var(--heading-color);
+  background: var(--surface-color);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+  transition: color 0.3s, background-color 0.3s, border-color 0.3s, transform 0.3s;
+}
+
+.theme-toggle:hover {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  transform: translateY(-3px);
+}
+
+body.dark-mode {
+  --background-color: #101010;
+  --default-color: #d7d7d7;
+  --heading-color: #f5f5f5;
+  --accent-color: #ffffff;
+  --surface-color: #1d1d1d;
+  --contrast-color: #101010;
+  --nav-color: #d7d7d7;
+  --nav-hover-color: #ffffff;
+  --nav-mobile-background-color: #181818;
+  --nav-dropdown-background-color: #1d1d1d;
+  --nav-dropdown-color: #d7d7d7;
+  --nav-dropdown-hover-color: #ffffff;
+}
+
+body.dark-mode .light-background {
+  --background-color: #181818;
+  --surface-color: #222222;
+}
+
+body.dark-mode .header {
+  --background-color: rgba(16, 16, 16, 0.92);
+}
+
+body.dark-mode .theme-toggle:hover {
+  color: #101010;
+}
+
+@media (max-width: 575.98px) {
+  .theme-toggle {
+    right: 16px;
+    bottom: 16px;
+  }
 }
