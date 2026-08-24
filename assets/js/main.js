@@ -10,6 +10,100 @@
   "use strict";
 
   /**
+   * Theme toggle
+   */
+  const themeToggle = document.querySelector('#theme-toggle');
+  const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
+  const savedTheme = localStorage.getItem('portfolio-theme');
+  const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function getSystemTheme() {
+    return colorSchemeQuery.matches ? 'dark' : 'light';
+  }
+
+  function applyTheme(theme) {
+    const isDark = theme === 'dark';
+    document.body.classList.toggle('dark-mode', isDark);
+
+    if (themeToggle && themeIcon) {
+      themeIcon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      themeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+  }
+
+  applyTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : getSystemTheme());
+
+  colorSchemeQuery.addEventListener('change', () => {
+    if (!localStorage.getItem('portfolio-theme')) {
+      applyTheme(getSystemTheme());
+    }
+  });
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+      localStorage.setItem('portfolio-theme', nextTheme);
+      applyTheme(nextTheme);
+    });
+  }
+
+  document.addEventListener('pointerdown', (event) => {
+    const interactiveElement = event.target.closest('a, button');
+    if (!interactiveElement || interactiveElement.disabled || reducedMotionQuery.matches) return;
+
+    const echo = document.createElement('span');
+    echo.className = 'cursor-echo';
+    echo.style.left = `${event.clientX}px`;
+    echo.style.top = `${event.clientY}px`;
+    document.body.appendChild(echo);
+    echo.addEventListener('animationend', () => echo.remove(), { once: true });
+  });
+
+  document.addEventListener('pointerdown', (event) => {
+    if (event.target.closest('a, button, input, textarea, select, .hero .portrait-wrap, .about .profile-figure') || reducedMotionQuery.matches) return;
+
+    const dots = document.createElement('span');
+    dots.className = 'background-dots';
+    dots.style.left = `${event.clientX}px`;
+    dots.style.top = `${event.clientY}px`;
+
+    for (let index = 0; index < 24; index += 1) {
+      const dot = document.createElement('span');
+      const angle = (Math.PI * 2 * index) / 24;
+      dot.style.setProperty('--dot-x', `${Math.cos(angle) * 58}px`);
+      dot.style.setProperty('--dot-y', `${Math.sin(angle) * 58}px`);
+      dots.appendChild(dot);
+    }
+
+    document.body.appendChild(dots);
+    dots.lastElementChild.addEventListener('animationend', () => dots.remove(), { once: true });
+  });
+
+  document.addEventListener('pointerdown', (event) => {
+    const profileImage = event.target.closest('.hero .portrait-wrap .portrait-img, .about .profile-figure .profile-photo');
+    if (!profileImage || reducedMotionQuery.matches) return;
+
+    const firework = document.createElement('span');
+    firework.className = 'profile-firework';
+    firework.style.left = `${event.clientX}px`;
+    firework.style.top = `${event.clientY}px`;
+
+    for (let index = 0; index < 24; index += 1) {
+      const particle = document.createElement('span');
+      const angle = (Math.PI * 2 * index) / 24;
+      const radius = 48 + (index % 3) * 18;
+      particle.style.setProperty('--firework-x', `${Math.cos(angle) * radius}px`);
+      particle.style.setProperty('--firework-y', `${Math.sin(angle) * radius}px`);
+      firework.appendChild(particle);
+    }
+
+    document.body.appendChild(firework);
+    firework.lastElementChild.addEventListener('animationend', () => firework.remove(), { once: true });
+  });
+
+  /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
   function toggleScrolled() {
@@ -65,9 +159,29 @@
    */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
-    window.addEventListener('load', () => {
+    const loaderPercent = preloader.querySelector('#loader-percent');
+    const loaderBarFill = preloader.querySelector('#loader-bar-fill');
+    let progress = 1;
+
+    const progressInterval = window.setInterval(() => {
+      progress += 1;
+
+      if (loaderPercent) {
+        loaderPercent.textContent = `${progress}%`;
+      }
+
+      if (loaderBarFill) {
+        loaderBarFill.style.width = `${progress}%`;
+      }
+
+      if (progress >= 100) {
+        window.clearInterval(progressInterval);
+      }
+    }, 60);
+
+    window.setTimeout(() => {
       preloader.remove();
-    });
+    }, 6000);
   }
 
   /**
