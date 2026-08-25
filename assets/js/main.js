@@ -247,10 +247,7 @@
     const loaderPageStatus = preloader.querySelector('.loader-page-status');
     const loaderScriptureText = preloader.querySelector('#loader-scripture-text');
     const loaderScriptureReference = preloader.querySelector('#loader-scripture-reference');
-    const loaderLocalTime = preloader.querySelector('#loader-local-time');
-    const loaderTimezone = preloader.querySelector('#loader-timezone');
     let progress = 1;
-    let loaderTimeInterval;
 
     if (loaderPageStatus) {
       const navigationEntry = performance.getEntriesByType('navigation')[0];
@@ -306,23 +303,6 @@
       loaderScriptureReference.textContent = scripture.reference;
     }
 
-    if (loaderLocalTime && loaderTimezone) {
-      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const timeFormatter = new Intl.DateTimeFormat(undefined, {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hourCycle: 'h23'
-      });
-      const updateLoaderTime = () => {
-        loaderLocalTime.textContent = timeFormatter.format(new Date());
-      };
-
-      loaderTimezone.textContent = timeZone.replace(/_/g, ' ');
-      updateLoaderTime();
-      loaderTimeInterval = window.setInterval(updateLoaderTime, 1000);
-    }
-
     const progressInterval = window.setInterval(() => {
       progress += 1;
 
@@ -340,7 +320,6 @@
     }, 60);
 
     window.setTimeout(() => {
-      window.clearInterval(loaderTimeInterval);
       preloader.classList.add('is-leaving');
       document.body.classList.remove('page-loading');
       document.body.classList.add('page-loaded');
