@@ -1105,31 +1105,6 @@ body.search-open .site-search-panel {
   animation: preloader-bar-shimmer 1.8s linear infinite;
 }
 
-#preloader .loader-local-time {
-  display: grid;
-  gap: 3px;
-  margin: 20px 0 0;
-  color: color-mix(in srgb, var(--default-color), transparent 22%);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-}
-
-#preloader .loader-local-time span {
-  text-transform: uppercase;
-}
-
-#preloader .loader-local-time time {
-  color: var(--heading-color);
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-}
-
-#preloader .loader-local-time small {
-  font-size: 0.7rem;
-  letter-spacing: 0.03em;
-}
-
 @keyframes preloader-aurora {
   from {
     transform: translate3d(-4%, -3%, 0) scale(1);
