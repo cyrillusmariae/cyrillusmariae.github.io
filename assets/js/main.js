@@ -15,11 +15,30 @@
   const themeToggle = document.querySelector('#theme-toggle');
   const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
   const savedTheme = localStorage.getItem('portfolio-theme');
-  const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
   const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  function getSystemTheme() {
-    return colorSchemeQuery.matches ? 'dark' : 'light';
+  function getAutomaticTheme() {
+    const hour = new Date().getHours();
+    return hour >= 18 || hour < 6 ? 'dark' : 'light';
+  }
+
+  function scheduleAutomaticTheme() {
+    const now = new Date();
+    const nextChange = new Date(now);
+    const hour = now.getHours();
+    const nextHour = hour >= 18 ? 6 : hour >= 6 ? 18 : 6;
+
+    if (hour >= 18 || hour < 6) {
+      nextChange.setDate(now.getDate() + (hour >= 18 ? 1 : 0));
+    }
+
+    nextChange.setHours(nextHour, 0, 0, 0);
+    window.setTimeout(() => {
+      if (!localStorage.getItem('portfolio-theme')) {
+        applyTheme(getAutomaticTheme());
+      }
+      scheduleAutomaticTheme();
+    }, Math.max(nextChange.getTime() - now.getTime(), 1000));
   }
 
   function applyTheme(theme) {
@@ -33,13 +52,8 @@
     }
   }
 
-  applyTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : getSystemTheme());
-
-  colorSchemeQuery.addEventListener('change', () => {
-    if (!localStorage.getItem('portfolio-theme')) {
-      applyTheme(getSystemTheme());
-    }
-  });
+  applyTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : getAutomaticTheme());
+  scheduleAutomaticTheme();
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
@@ -64,21 +78,12 @@
   document.addEventListener('pointerdown', (event) => {
     if (event.target.closest('a, button, input, textarea, select, .hero .portrait-wrap, .about .profile-figure') || reducedMotionQuery.matches) return;
 
-    const dots = document.createElement('span');
-    dots.className = 'background-dots';
-    dots.style.left = `${event.clientX}px`;
-    dots.style.top = `${event.clientY}px`;
-
-    for (let index = 0; index < 24; index += 1) {
-      const dot = document.createElement('span');
-      const angle = (Math.PI * 2 * index) / 24;
-      dot.style.setProperty('--dot-x', `${Math.cos(angle) * 58}px`);
-      dot.style.setProperty('--dot-y', `${Math.sin(angle) * 58}px`);
-      dots.appendChild(dot);
-    }
-
-    document.body.appendChild(dots);
-    dots.lastElementChild.addEventListener('animationend', () => dots.remove(), { once: true });
+    const echo = document.createElement('span');
+    echo.className = 'background-echo';
+    echo.style.left = `${event.clientX}px`;
+    echo.style.top = `${event.clientY}px`;
+    document.body.appendChild(echo);
+    echo.addEventListener('animationend', () => echo.remove(), { once: true });
   });
 
   document.addEventListener('pointerdown', (event) => {
@@ -109,7 +114,7 @@
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
-    if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
+    if (!selectHeader) return;
     window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
   }
 
@@ -122,12 +127,20 @@
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
   function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
+    const isOpen = document.querySelector('body').classList.toggle('mobile-nav-active');
     mobileNavToggleBtn.classList.toggle('bi-list');
     mobileNavToggleBtn.classList.toggle('bi-x');
+    mobileNavToggleBtn.setAttribute('aria-expanded', String(isOpen));
+    mobileNavToggleBtn.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
   }
   if (mobileNavToggleBtn) {
     mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+    mobileNavToggleBtn.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        mobileNavToogle();
+      }
+    });
   }
 
   /**
@@ -155,13 +168,160 @@
   });
 
   /**
-   * Preloader
+   * Site search
+   */
+  const siteSearchToggle = document.querySelector('#site-search-toggle');
+  const siteSearch = document.querySelector('#site-search');
+  const siteSearchClose = document.querySelector('#site-search-close');
+  const siteSearchForm = document.querySelector('#site-search-form');
+  const siteSearchInput = document.querySelector('#site-search-input');
+  const siteSearchMessage = document.querySelector('#site-search-message');
+  const siteSearchResults = document.querySelector('#site-search-results');
+
+  if (siteSearchToggle && siteSearch && siteSearchInput && siteSearchMessage && siteSearchResults) {
+    const searchableSections = Array.from(document.querySelectorAll('main section[id]'));
+
+    function closeSiteSearch() {
+      document.body.classList.remove('search-open');
+      siteSearch.setAttribute('aria-hidden', 'true');
+      siteSearchToggle.setAttribute('aria-expanded', 'false');
+      siteSearchToggle.focus();
+    }
+
+    function renderSearchResults(query) {
+      const normalizedQuery = query.trim().toLowerCase();
+      siteSearchResults.replaceChildren();
+
+      if (!normalizedQuery) {
+        siteSearchMessage.textContent = 'Try “portfolio”, “services”, or “contact”.';
+        return;
+      }
+
+      const matches = searchableSections.filter(section => section.textContent.toLowerCase().includes(normalizedQuery));
+      siteSearchMessage.textContent = matches.length ? `${matches.length} result${matches.length === 1 ? '' : 's'} found.` : 'No matching sections found. Maybe you can ask St. Anthony to help you?';
+
+      matches.forEach(section => {
+        const result = document.createElement('li');
+        const link = document.createElement('a');
+        const title = section.querySelector('h1, h2')?.textContent.trim() || section.id;
+        const summary = section.textContent.replace(/\s+/g, ' ').trim().slice(0, 150);
+        const heading = document.createElement('strong');
+        const excerpt = document.createElement('span');
+
+        link.href = `#${section.id}`;
+        heading.textContent = title;
+        excerpt.textContent = `${summary}${summary.length === 150 ? '…' : ''}`;
+        link.append(heading, excerpt);
+        link.addEventListener('click', closeSiteSearch);
+        result.appendChild(link);
+        siteSearchResults.appendChild(result);
+      });
+    }
+
+    siteSearchToggle.addEventListener('click', () => {
+      if (document.body.classList.contains('mobile-nav-active')) mobileNavToogle();
+      document.body.classList.add('search-open');
+      siteSearch.setAttribute('aria-hidden', 'false');
+      siteSearchToggle.setAttribute('aria-expanded', 'true');
+      window.setTimeout(() => siteSearchInput.focus(), 150);
+    });
+
+    siteSearchClose?.addEventListener('click', closeSiteSearch);
+    siteSearchForm?.addEventListener('submit', event => event.preventDefault());
+    siteSearchInput.addEventListener('input', event => renderSearchResults(event.target.value));
+    siteSearch.addEventListener('click', event => {
+      if (event.target === siteSearch) closeSiteSearch();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && document.body.classList.contains('search-open')) closeSiteSearch();
+    });
+  }
+
+  /**
+  * Preloader
    */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
     const loaderPercent = preloader.querySelector('#loader-percent');
     const loaderBarFill = preloader.querySelector('#loader-bar-fill');
+    const loaderPageStatus = preloader.querySelector('.loader-page-status');
+    const loaderScriptureText = preloader.querySelector('#loader-scripture-text');
+    const loaderScriptureReference = preloader.querySelector('#loader-scripture-reference');
+    const loaderLocalTime = preloader.querySelector('#loader-local-time');
+    const loaderTimezone = preloader.querySelector('#loader-timezone');
     let progress = 1;
+    let loaderTimeInterval;
+
+    if (loaderPageStatus) {
+      const navigationEntry = performance.getEntriesByType('navigation')[0];
+      const isReload = navigationEntry ? navigationEntry.type === 'reload' : performance.navigation?.type === 1;
+
+      if (isReload) {
+        loaderPageStatus.textContent = 'Reloading the website in progress';
+      } else if (loaderPageStatus.id === 'loader-page-status' && document.referrer) {
+        try {
+          const referrerUrl = new URL(document.referrer);
+          const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+          const referrerPath = referrerUrl.pathname.replace(/\/$/, '') || '/';
+
+          if (referrerUrl.origin === window.location.origin && referrerPath !== currentPath) {
+            loaderPageStatus.textContent = 'Redirecting you to the Mainpage';
+          }
+        } catch {
+          // Keep the default welcome message if the browser does not provide a usable referrer.
+        }
+      }
+    }
+
+    if (loaderScriptureText && loaderScriptureReference) {
+      const scriptures = [
+        {
+          text: '“Be still, and know that I am God.”',
+          reference: 'Psalm 46:10'
+        },
+        {
+          text: '“The Lord is my shepherd; I shall not want.”',
+          reference: 'Psalm 23:1'
+        },
+        {
+          text: '“The Lord is my light and my salvation; whom shall I fear?”',
+          reference: 'Psalm 27:1'
+        },
+        {
+          text: '“Trust in the Lord with all thine heart.”',
+          reference: 'Proverbs 3:5'
+        },
+        {
+          text: '“Rejoice in hope; be patient in tribulation.”',
+          reference: 'Romans 12:12'
+        },
+        {
+          text: '“The joy of the Lord is your strength.”',
+          reference: 'Nehemiah 8:10'
+        }
+      ];
+      const scripture = scriptures[Math.floor(Math.random() * scriptures.length)];
+
+      loaderScriptureText.textContent = scripture.text;
+      loaderScriptureReference.textContent = scripture.reference;
+    }
+
+    if (loaderLocalTime && loaderTimezone) {
+      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const timeFormatter = new Intl.DateTimeFormat(undefined, {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hourCycle: 'h23'
+      });
+      const updateLoaderTime = () => {
+        loaderLocalTime.textContent = timeFormatter.format(new Date());
+      };
+
+      loaderTimezone.textContent = timeZone.replace(/_/g, ' ');
+      updateLoaderTime();
+      loaderTimeInterval = window.setInterval(updateLoaderTime, 1000);
+    }
 
     const progressInterval = window.setInterval(() => {
       progress += 1;
@@ -180,7 +340,15 @@
     }, 60);
 
     window.setTimeout(() => {
-      preloader.remove();
+      window.clearInterval(loaderTimeInterval);
+      preloader.classList.add('is-leaving');
+      document.body.classList.remove('page-loading');
+      document.body.classList.add('page-loaded');
+
+      window.setTimeout(() => {
+        preloader.remove();
+        document.body.classList.add('page-ready');
+      }, 650);
     }, 6000);
   }
 
