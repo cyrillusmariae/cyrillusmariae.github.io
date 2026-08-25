@@ -63,16 +63,49 @@
     });
   }
 
-  document.addEventListener('pointerdown', (event) => {
-    const interactiveElement = event.target.closest('a, button');
-    if (!interactiveElement || interactiveElement.disabled || reducedMotionQuery.matches) return;
+  if (!reducedMotionQuery.matches && window.matchMedia('(pointer: fine)').matches) {
+    const idleCursorEcho = document.createElement('span');
+    idleCursorEcho.className = 'cursor-idle-echo';
+    document.body.appendChild(idleCursorEcho);
 
-    const echo = document.createElement('span');
-    echo.className = 'cursor-echo';
-    echo.style.left = `${event.clientX}px`;
-    echo.style.top = `${event.clientY}px`;
-    document.body.appendChild(echo);
-    echo.addEventListener('animationend', () => echo.remove(), { once: true });
+    document.addEventListener('pointermove', (event) => {
+      const isInteractive = Boolean(event.target.closest('a, button, [role="tab"]'));
+      idleCursorEcho.style.left = `${event.clientX}px`;
+      idleCursorEcho.style.top = `${event.clientY}px`;
+      idleCursorEcho.classList.toggle('is-visible', !isInteractive);
+    });
+
+    document.documentElement.addEventListener('pointerleave', () => {
+      idleCursorEcho.classList.remove('is-visible');
+    });
+  }
+
+  function createInteractiveFirework(x, y) {
+    if (reducedMotionQuery.matches) return;
+
+    const firework = document.createElement('span');
+    firework.className = 'interactive-firework';
+    firework.style.left = `${x}px`;
+    firework.style.top = `${y}px`;
+
+    for (let index = 0; index < 48; index += 1) {
+      const particle = document.createElement('span');
+      const angle = (Math.PI * 2 * index) / 48;
+      const radius = 86 + (index % 4) * 30;
+      particle.style.setProperty('--firework-x', `${Math.cos(angle) * radius}px`);
+      particle.style.setProperty('--firework-y', `${Math.sin(angle) * radius}px`);
+      particle.style.setProperty('--particle-delay', `${(index % 6) * 12}ms`);
+      firework.appendChild(particle);
+    }
+
+    document.body.appendChild(firework);
+    firework.lastElementChild.addEventListener('animationend', () => firework.remove(), { once: true });
+  }
+
+  document.addEventListener('pointerdown', (event) => {
+    const interactiveElement = event.target.closest('a, button, [role="tab"]');
+    if (!interactiveElement || interactiveElement.disabled) return;
+    createInteractiveFirework(event.clientX, event.clientY);
   });
 
   document.addEventListener('pointerdown', (event) => {
@@ -251,6 +284,8 @@
     const loaderPageStatus = preloader.querySelector('.loader-page-status');
     const loaderScriptureText = preloader.querySelector('#loader-scripture-text');
     const loaderScriptureReference = preloader.querySelector('#loader-scripture-reference');
+    const loaderDuration = 8000;
+    const typingDuration = 6500;
     let progress = 1;
 
     if (loaderPageStatus) {
@@ -271,6 +306,28 @@
         } catch {
           // Keep the default welcome message if the browser does not provide a usable referrer.
         }
+      }
+
+      const loaderMessage = loaderPageStatus.textContent.trim();
+      loaderPageStatus.setAttribute('aria-label', loaderMessage);
+
+      if (!reducedMotionQuery.matches) {
+        const messageCharacters = Array.from(loaderMessage);
+        let messageIndex = 0;
+
+        loaderPageStatus.textContent = '';
+        loaderPageStatus.classList.add('is-typing');
+
+        const typingDelay = typingDuration / messageCharacters.length;
+        const messageTypingInterval = window.setInterval(() => {
+          loaderPageStatus.textContent += messageCharacters[messageIndex];
+          messageIndex += 1;
+
+          if (messageIndex >= messageCharacters.length) {
+            window.clearInterval(messageTypingInterval);
+            loaderPageStatus.classList.remove('is-typing');
+          }
+        }, typingDelay);
       }
     }
 
@@ -321,10 +378,11 @@
       if (progress >= 100) {
         window.clearInterval(progressInterval);
       }
-    }, 60);
+    }, loaderDuration / 99);
 
     window.setTimeout(() => {
       preloader.classList.add('is-leaving');
+      document.documentElement.classList.remove('page-loading');
       document.body.classList.remove('page-loading');
       document.body.classList.add('page-loaded');
 
@@ -332,7 +390,7 @@
         preloader.remove();
         document.body.classList.add('page-ready');
       }, 650);
-    }, 6000);
+    }, loaderDuration);
   }
 
   /**
