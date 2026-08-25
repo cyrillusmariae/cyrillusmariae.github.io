@@ -170,7 +170,7 @@
   /**
    * Site search
    */
-  const siteSearchToggle = document.querySelector('#site-search-toggle');
+  const siteSearchToggles = Array.from(document.querySelectorAll('.site-search-toggle'));
   const siteSearch = document.querySelector('#site-search');
   const siteSearchClose = document.querySelector('#site-search-close');
   const siteSearchForm = document.querySelector('#site-search-form');
@@ -178,14 +178,15 @@
   const siteSearchMessage = document.querySelector('#site-search-message');
   const siteSearchResults = document.querySelector('#site-search-results');
 
-  if (siteSearchToggle && siteSearch && siteSearchInput && siteSearchMessage && siteSearchResults) {
+  if (siteSearchToggles.length && siteSearch && siteSearchInput && siteSearchMessage && siteSearchResults) {
+    let activeSearchToggle = siteSearchToggles[0];
     const searchableSections = Array.from(document.querySelectorAll('main section[id]'));
 
     function closeSiteSearch() {
       document.body.classList.remove('search-open');
       siteSearch.setAttribute('aria-hidden', 'true');
-      siteSearchToggle.setAttribute('aria-expanded', 'false');
-      siteSearchToggle.focus();
+      siteSearchToggles.forEach(toggle => toggle.setAttribute('aria-expanded', 'false'));
+      activeSearchToggle.focus();
     }
 
     function renderSearchResults(query) {
@@ -218,12 +219,15 @@
       });
     }
 
-    siteSearchToggle.addEventListener('click', () => {
-      if (document.body.classList.contains('mobile-nav-active')) mobileNavToogle();
-      document.body.classList.add('search-open');
-      siteSearch.setAttribute('aria-hidden', 'false');
-      siteSearchToggle.setAttribute('aria-expanded', 'true');
-      window.setTimeout(() => siteSearchInput.focus(), 150);
+    siteSearchToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        activeSearchToggle = toggle;
+        if (document.body.classList.contains('mobile-nav-active')) mobileNavToogle();
+        document.body.classList.add('search-open');
+        siteSearch.setAttribute('aria-hidden', 'false');
+        toggle.setAttribute('aria-expanded', 'true');
+        window.setTimeout(() => siteSearchInput.focus(), 150);
+      });
     });
 
     siteSearchClose?.addEventListener('click', closeSiteSearch);
