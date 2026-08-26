@@ -109,6 +109,11 @@
     const profileImage = event.target.closest('.hero .portrait-wrap .portrait-img, .about .profile-figure .profile-photo');
     if (!profileImage || reducedMotionQuery.matches) return;
 
+    profileImage.classList.remove('is-click-animated');
+    void profileImage.offsetWidth;
+    profileImage.classList.add('is-click-animated');
+    profileImage.addEventListener('animationend', () => profileImage.classList.remove('is-click-animated'), { once: true });
+
     const firework = document.createElement('span');
     firework.className = 'profile-firework';
     firework.style.left = `${event.clientX}px`;
@@ -125,6 +130,21 @@
 
     document.body.appendChild(firework);
     firework.lastElementChild.addEventListener('animationend', () => firework.remove(), { once: true });
+  });
+
+  document.querySelectorAll('.hero .portrait-wrap, .about .profile-figure').forEach((figure) => {
+    figure.addEventListener('keydown', (event) => {
+      if ((event.key !== 'Enter' && event.key !== ' ') || reducedMotionQuery.matches) return;
+      event.preventDefault();
+      const image = figure.querySelector('.portrait-img, .profile-photo');
+      if (!image) return;
+      image.classList.remove('is-click-animated');
+      void image.offsetWidth;
+      image.classList.add('is-click-animated');
+      image.addEventListener('animationend', () => image.classList.remove('is-click-animated'), { once: true });
+      const bounds = image.getBoundingClientRect();
+      createInteractiveFirework(bounds.left + bounds.width / 2, bounds.top + bounds.height / 2);
+    });
   });
 
   /**

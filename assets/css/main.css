@@ -6574,3 +6574,46 @@ body.dark-mode .interactive-firework span { filter: brightness(1.25) saturate(1.
   .cursor-idle-echo,
   .interactive-firework { display: none; }
 }
+
+/* Clickable profile portraits in the Hero and About sections. */
+.hero .portrait-wrap,
+.about .profile-figure {
+  cursor: pointer;
+  outline: none;
+}
+
+.hero .portrait-wrap:focus-visible .portrait-img,
+.about .profile-figure:focus-visible .profile-photo {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 7px;
+}
+
+.hero .portrait-wrap .portrait-img.is-click-animated {
+  animation: hero-portrait-click 0.9s cubic-bezier(0.18, 0.8, 0.25, 1) both;
+}
+
+.about .profile-figure .profile-photo.is-click-animated {
+  animation: about-portrait-click 0.85s cubic-bezier(0.18, 0.8, 0.25, 1) both;
+}
+
+@keyframes hero-portrait-click {
+  0% { filter: brightness(1); transform: perspective(900px) rotateY(0) scale(1); }
+  38% { filter: brightness(1.12) saturate(1.08); transform: perspective(900px) rotateY(-9deg) rotateZ(-1.5deg) scale(1.055); }
+  68% { transform: perspective(900px) rotateY(4deg) rotateZ(.7deg) scale(.99); }
+  100% { filter: brightness(1); transform: perspective(900px) rotateY(0) scale(1); }
+}
+
+@keyframes about-portrait-click {
+  0% { filter: brightness(1); transform: translateY(0) rotate(0) scale(1); }
+  38% { filter: brightness(1.1) saturate(1.06); transform: translateY(-16px) rotate(2.5deg) scale(1.035); }
+  68% { transform: translateY(3px) rotate(-1deg) scale(.995); }
+  100% { filter: brightness(1); transform: translateY(0) rotate(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .portrait-wrap,
+  .about .profile-figure { cursor: auto; }
+
+  .hero .portrait-wrap .portrait-img.is-click-animated,
+  .about .profile-figure .profile-photo.is-click-animated { animation: none; }
+}
