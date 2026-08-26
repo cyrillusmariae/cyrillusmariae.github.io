@@ -16,29 +16,10 @@
   const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
   const savedTheme = localStorage.getItem('portfolio-theme');
   const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const systemDarkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
   function getAutomaticTheme() {
-    const hour = new Date().getHours();
-    return hour >= 18 || hour < 6 ? 'dark' : 'light';
-  }
-
-  function scheduleAutomaticTheme() {
-    const now = new Date();
-    const nextChange = new Date(now);
-    const hour = now.getHours();
-    const nextHour = hour >= 18 ? 6 : hour >= 6 ? 18 : 6;
-
-    if (hour >= 18 || hour < 6) {
-      nextChange.setDate(now.getDate() + (hour >= 18 ? 1 : 0));
-    }
-
-    nextChange.setHours(nextHour, 0, 0, 0);
-    window.setTimeout(() => {
-      if (!localStorage.getItem('portfolio-theme')) {
-        applyTheme(getAutomaticTheme());
-      }
-      scheduleAutomaticTheme();
-    }, Math.max(nextChange.getTime() - now.getTime(), 1000));
+    return systemDarkModeQuery.matches ? 'dark' : 'light';
   }
 
   function applyTheme(theme) {
@@ -53,7 +34,12 @@
   }
 
   applyTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : getAutomaticTheme());
-  scheduleAutomaticTheme();
+
+  systemDarkModeQuery.addEventListener('change', () => {
+    if (!localStorage.getItem('portfolio-theme')) {
+      applyTheme(getAutomaticTheme());
+    }
+  });
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
