@@ -3223,6 +3223,8 @@ section .hero {
 
 .contact .contact-sidebar .connect-section .social-links {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 15px;
 }
 
@@ -3232,6 +3234,7 @@ section .hero {
   justify-content: center;
   width: 40px;
   height: 40px;
+  flex: 0 0 40px;
   color: var(--default-color);
   text-decoration: none;
   transition: all 0.3s ease;
